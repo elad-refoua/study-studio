@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>MENTI Study Studio — שאלון תכנון מחקר</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0f172a; --bg2:#1e293b; --card:#1e293bcc; --line:#334155;
+    --sky:#38bdf8; --sky2:#0ea5e9; --ink:#e2e8f0; --muted:#94a3b8;
+    --good:#34d399; --warn:#fbbf24; --pink:#f472b6; --violet:#a78bfa; --amber:#fbbf24;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:linear-gradient(160deg,#0b1220,#0f172a 40%,#0b1220);
+    color:var(--ink);font-family:Heebo,system-ui,Arial,sans-serif;line-height:1.6;}
+  .wrap{max-width:840px;margin:0 auto;padding:28px 18px 80px;}
+  header.hero{text-align:center;padding:34px 18px 12px;}
+  .hero h1{font-size:30px;font-weight:800;margin:0 0 6px;
+    background:linear-gradient(90deg,var(--sky),#a78bfa);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .hero p{color:var(--muted);margin:4px 0 0;font-size:15px;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:20px 20px;margin:16px 0;backdrop-filter:blur(4px);}
+  .card h2{font-size:18px;margin:0 0 4px;display:flex;align-items:center;gap:8px;}
+  .card .hint{color:var(--muted);font-size:13px;margin:0 0 14px;}
+  .num{display:inline-flex;width:26px;height:26px;border-radius:50%;background:var(--sky2);
+    color:#06283d;font-weight:800;align-items:center;justify-content:center;font-size:14px;}
+  label.q{display:block;font-weight:500;margin:14px 0 6px;}
+  input[type=text],input[type=number],textarea,select{
+    width:100%;background:#0b1220;border:1px solid var(--line);color:var(--ink);
+    border-radius:10px;padding:10px 12px;font-family:inherit;font-size:15px;}
+  textarea{min-height:64px;resize:vertical;}
+  input:focus,textarea:focus,select:focus{outline:none;border-color:var(--sky);box-shadow:0 0 0 3px #38bdf833;}
+  .row{display:flex;gap:12px;flex-wrap:wrap;}
+  .row>div{flex:1;min-width:160px;}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin:6px 0;}
+  .chip{cursor:pointer;border:1px solid var(--line);background:#0b1220;border-radius:999px;
+    padding:9px 15px;font-size:14px;user-select:none;transition:.15s;}
+  .chip:hover{border-color:var(--sky);}
+  .chip.on{background:linear-gradient(90deg,var(--sky2),#2563eb);border-color:var(--sky);color:#fff;font-weight:600;}
+  .chip.on.pink{background:linear-gradient(90deg,var(--pink),#db2777);}
+  .sub{margin:8px 0 0;padding:12px;border:1px dashed var(--line);border-radius:12px;background:#0b122080;}
+  .sub.hidden{display:none;}
+  .minirow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:14px;}
+  .minirow select{width:auto;min-width:120px;}
+  .seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+  .seg button{background:#0b1220;color:var(--muted);border:none;padding:9px 16px;cursor:pointer;font-family:inherit;font-size:14px;}
+  .seg button.on{background:var(--sky2);color:#06283d;font-weight:700;}
+  .check{display:flex;align-items:center;gap:8px;margin:8px 0;cursor:pointer;font-size:14px;}
+  .check input{width:18px;height:18px;accent-color:var(--sky);}
+  .cta{display:block;width:100%;margin:22px 0 0;padding:15px;border:none;border-radius:14px;cursor:pointer;
+    background:linear-gradient(90deg,var(--sky),#6366f1);color:#fff;font-weight:800;font-size:17px;font-family:inherit;}
+  .cta:hover{filter:brightness(1.07);}
+  /* simulations explainer + picker */
+  .info{background:linear-gradient(160deg,#0b1b2e,#101c33);border:1px solid #1e3a5f;}
+  .track{margin:10px 0;}
+  .track h3{margin:0 0 4px;font-size:15px;display:flex;align-items:center;gap:8px;}
+  .dot{width:10px;height:10px;border-radius:50%;display:inline-block;}
+  .track p{margin:0;color:var(--muted);font-size:13.5px;}
+  .simgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin:8px 0;}
+  .simcard{cursor:pointer;border:1px solid var(--line);background:#0b1220;border-radius:12px;padding:11px 13px;transition:.15s;}
+  .simcard:hover{border-color:var(--sky);}
+  .simcard.on{border-color:var(--sky);background:linear-gradient(160deg,#0c2236,#0b1220);box-shadow:0 0 0 2px #38bdf855;}
+  .simcard .t{font-weight:600;font-size:14px;}
+  .simcard .d{color:var(--muted);font-size:12.5px;margin-top:2px;}
+  .simcard .tag{font-size:11px;color:#06283d;background:var(--sky);border-radius:6px;padding:1px 6px;margin-inline-start:6px;}
+  #out.hidden{display:none;}
+  pre{background:#020617;border:1px solid var(--line);border-radius:12px;padding:14px;overflow:auto;
+    direction:ltr;text-align:left;font-size:12px;max-height:340px;color:#cbd5e1;}
+  .outbtns{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0;}
+  .outbtns button{flex:1;min-width:160px;padding:12px;border-radius:12px;border:1px solid var(--line);
+    background:#0b1220;color:var(--ink);font-weight:600;cursor:pointer;font-family:inherit;font-size:14px;}
+  .outbtns button.primary{background:var(--good);color:#053;border:none;}
+  .note{color:var(--muted);font-size:13px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <h1>בואו נתכנן את המחקר שלך</h1>
+    <p>כמה שאלות קצרות — ומכאן אנחנו בונים עבורך את כל המחקר. הפגישה עצמה תהיה קצרה ולעניין.</p>
+  </header>
+
+  <!-- About our simulations (explainer) -->
+  <div class="card info">
+    <h2>🧠 הסימולציות של MENTI</h2>
+    <p class="hint">סימולציות אימון מבוססות-AI: המשתתף/ת משוחח/ת עם דמות מציאותית, עם מנחה שמתערב/ת תוך כדי, ומשוב מובנה בסוף. שלוש משפחות:</p>
+    <div class="track"><h3><span class="dot" style="background:var(--pink)"></span> MentiParent — הורים</h3>
+      <p>הורה מתרגל שיחה עם ילד/ה מדומה. למשל <strong>ליה</strong> (חרדה בזמן מלחמה, בת 7), <strong>דני</strong> (ניכור הורי, בן 14), <strong>אוולין</strong> (גבולות והתנהגות מסוכנת, בת 15).</p></div>
+    <div class="track"><h3><span class="dot" style="background:var(--sky)"></span> MentiTherapist — מטפלים ואנשי מקצוע</h3>
+      <p>אימון מיומנויות קליניות. למשל <strong>יואב</strong> (דיאלוג סוקרטי ב-CPT), <strong>ד״ר דוֵק / קרול</strong> (זיהוי צרכים פסיכולוגיים), <strong>רינה</strong> (דיאלוג תומך-צרכים לסטודנטים לייעוץ, SDT), וסוויטת <strong>UP</strong> (איתן ו-8 מודולים לוויסות רגשי).</p></div>
+    <div class="track"><h3><span class="dot" style="background:var(--amber)"></span> MentiCare — אומנה</h3>
+      <p>הכשרת אנשי מקצוע בעולם האומנה. למשל <strong>ג'ולי</strong> (הנחיית אם אומנת).</p></div>
+    <p class="note">אפשר לבחור סימולציה קיימת — או לבקש שנבנה אחת חדשה יחד, מותאמת לנושא שלך.</p>
+  </div>
+
+  <!-- 1 -->
+  <div class="card">
+    <h2><span class="num">1</span> עליך ועל הקבוצה</h2>
+    <p class="hint">מי עורך/ת המחקר, מי הנבדקים, ובאיזו מסגרת.</p>
+    <label class="q">שם מלא ותפקיד</label>
+    <input type="text" id="collaborator" placeholder="לדוגמה: ד״ר חילי כוכבי, מרצה">
+    <div class="row">
+      <div><label class="q">מסגרת / מקום העברה</label><input type="text" id="setting" placeholder="לדוגמה: המרכז האקדמי למשפט ולעסקים — קורס שנה א'"></div>
+      <div><label class="q">שפת המחקר</label>
+        <select id="language"><option value="he">עברית</option><option value="en">אנגלית</option></select></div>
+    </div>
+    <label class="q">מי הנבדקים?</label>
+    <input type="text" id="population" placeholder="לדוגמה: מתאמנות שנה א' בפסיכולוגיה חינוכית">
+    <div class="row">
+      <div><label class="q">כמה סטודנטים / משתתפים בערך?</label><input type="number" id="n" min="1" placeholder="40"></div>
+      <div><label class="q">מתי (תאריך העברה)?</label><input type="text" id="when" placeholder="2026-06-07"></div>
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <div class="card">
+    <h2><span class="num">2</span> הסימולציה</h2>
+    <p class="hint">איזו סימולציה תרצה/י להעביר, כמה פעמים, ומה הערך המחקרי.</p>
+    <label class="q">איזו סימולציה?</label>
+    <div class="simgrid" id="simGrid"></div>
+    <div id="simOtherBox" class="sub hidden"><input type="text" id="simOther" placeholder="תאר/י את הסימולציה הרצויה או הקישור"></div>
+    <div class="row">
+      <div><label class="q">כמה פעמים יעברו את הסימולציה?</label>
+        <select id="nSessions"><option value="1">פעם אחת</option><option value="2">פעמיים</option><option value="3">שלוש</option><option value="multiple">כמה פעמים / לאורך זמן</option></select></div>
+    </div>
+    <label class="q">במשפט או שניים: מה המשתתפים אמורים להרוויח או לשנות?</label>
+    <textarea id="goal" placeholder="לדוגמה: להבין את חוויית ההורה, להרגיש מסוגלות גבוהה יותר, ולהפחית חשש."></textarea>
+    <label class="q">מה הערך המחקרי / התרומה? (למה זה חשוב ומה חדש כאן)</label>
+    <textarea id="researchValue" placeholder="לדוגמה: ראשונים לבחון אם משחק תפקיד ההורה בסימולציית AI מעלה מסוגלות ומפחית חשש אצל מתאמנים."></textarea>
+  </div>
+
+  <!-- 3 -->
+  <div class="card">
+    <h2><span class="num">3</span> מה למדוד — לפני ואחרי</h2>
+    <p class="hint">בחר/י את התוצאות שחשובות לך. לכל אחת נשאל אם היא צפויה לעלות או לרדת.</p>
+    <div class="chips" id="prepostChips"></div>
+    <div id="prepostSubs"></div>
+  </div>
+
+  <!-- 4 -->
+  <div class="card">
+    <h2><span class="num">4</span> בלוקים אחרי הסימולציה</h2>
+    <p class="hint">מדדים שנמדדים רק בסוף (משוב, שינוי נתפס).</p>
+    <label class="check"><input type="checkbox" id="po_acceptability" checked> קבילות הסימולציה (כמה הרגישה אמיתית, מועילה, ושווה המלצה)</label>
+    <label class="check"><input type="checkbox" id="po_perceived_change"> שינוי נתפס (האם החרדה ירדה / הסקרנות עלתה, בדיווח רטרוספקטיבי)</label>
+    <label class="check"><input type="checkbox" id="po_felt_change"> תחושת שינוי ישירה (האם הרגישו ששינתה משהו)</label>
+  </div>
+
+  <!-- 5 -->
+  <div class="card">
+    <h2><span class="num">5</span> מדדים קיימים</h2>
+    <p class="hint">יש לך שאלון או פריטים ספציפיים שתרצה/י להשתמש בהם?</p>
+    <div class="seg" id="haveScalesSeg">
+      <button type="button" data-v="no" class="on">לא — הציעו לי</button>
+      <button type="button" data-v="yes">כן — יש לי</button>
+    </div>
+    <div id="haveScalesBox" class="sub hidden"><textarea id="scalesNote" placeholder="פרט/י, או צרף/י בהמשך."></textarea></div>
+  </div>
+
+  <!-- 6 -->
+  <div class="card">
+    <h2><span class="num">6</span> תכן המחקר</h2>
+    <div class="row">
+      <div>
+        <label class="q">מתי למדוד?</label>
+        <div class="seg" id="timingSeg">
+          <button type="button" data-v="pre_post" class="on">לפני ואחרי</button>
+          <button type="button" data-v="post_only">רק אחרי</button>
+        </div>
+      </div>
+      <div>
+        <label class="q">קבוצת השוואה / ביקורת?</label>
+        <div class="seg" id="controlSeg">
+          <button type="button" data-v="no" class="on">לא (פיילוט)</button>
+          <button type="button" data-v="yes">כן</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7 -->
+  <div class="card">
+    <h2><span class="num">7</span> פרטי רקע לאיסוף</h2>
+    <p class="hint">אילו פרטים דמוגרפיים לאסוף.</p>
+    <div class="chips" id="demoChips"></div>
+  </div>
+
+  <!-- 8 -->
+  <div class="card">
+    <h2><span class="num">8</span> מימון</h2>
+    <p class="hint">האם יש מקור מימון למחקר?</p>
+    <div class="seg" id="fundingSeg">
+      <button type="button" data-v="no" class="on">אין / לא בטוח</button>
+      <button type="button" data-v="yes">כן — יש</button>
+    </div>
+    <div id="fundingBox" class="sub hidden"><input type="text" id="fundingSource" placeholder="מהו מקור המימון? (קרן, מענק, מוסד, סכום אם ידוע)"></div>
+  </div>
+
+  <!-- 9 -->
+  <div class="card">
+    <h2><span class="num">9</span> הערות</h2>
+    <p class="hint">כל דבר שחשוב שייכלל — או שעדיף להימנע ממנו.</p>
+    <textarea id="notes" placeholder="מקום חופשי להערות, בקשות, או דגשים."></textarea>
+  </div>
+
+  <button class="cta" id="submit">צרו לי טיוטת מחקר ⟵</button>
+
+  <div id="out" class="hidden">
+    <div class="card">
+      <h2>✓ קיבלנו — זה מה שנבנה ממך</h2>
+      <p class="note">הקובץ הזה (answers.json) עובר לסוכן, שמרכיב ממנו טיוטת מחקר מלאה + אג'נדה קצרה לפגישה.</p>
+      <div class="outbtns">
+        <button class="primary" id="download">⬇ הורדת answers.json</button>
+        <button id="copy">העתקה</button>
+      </div>
+      <pre id="json"></pre>
+    </div>
+  </div>
+</div>
+
+<script>
+const SIMS = [
+  {k:"lia", t:"ליה", d:"חרדה בזמן מלחמה (ילדה בת 7)", track:"הורים"},
+  {k:"danny", t:"דני", d:"ניכור הורי (נער בן 14)", track:"הורים"},
+  {k:"evelyn", t:"אוולין", d:"גבולות והתנהגות מסוכנת (בת 15)", track:"הורים"},
+  {k:"yoav", t:"יואב", d:"דיאלוג סוקרטי באימון מטפלים (CPT)", track:"מטפלים"},
+  {k:"carol", t:"ד״ר דוֵק (קרול)", d:"זיהוי צרכים פסיכולוגיים", track:"מטפלים"},
+  {k:"rina", t:"רינה", d:"דיאלוג תומך-צרכים לסטודנטים לייעוץ (SDT)", track:"מטפלים"},
+  {k:"up", t:"סוויטת UP", d:"איתן ו-8 מודולים לוויסות רגשי", track:"מטפלים"},
+  {k:"julie", t:"ג'ולי", d:"הכשרת מנחי אומנה", track:"אומנה"},
+  {k:"other", t:"סימולציה אחרת", d:"עוד לא בטוח/ה / אחר", track:""},
+  {k:"new", t:"סימולציה חדשה", d:"נבנה יחד, מותאמת לנושא", track:""},
+];
+const PREPOST = [
+  {c:"self_efficacy", he:"מסוגלות עצמית", dir:"increase"},
+  {c:"apprehension",  he:"חשש / חרדה",    dir:"decrease"},
+  {c:"mentalization", he:"מנטליזציה (יכולת רפלקטיבית)", dir:"increase"},
+  {c:"custom",        he:"משהו אחר (נכתוב לך פריטים)", dir:"increase", custom:true},
+];
+const DEMOG = [
+  {k:"age",he:"גיל"},{k:"gender",he:"מגדר"},{k:"parent_status",he:"הורות"},
+  {k:"marital_status",he:"מצב משפחתי"},{k:"religion",he:"דת"},
+  {k:"religiosity",he:"רמת דתיות"},{k:"prior_experience",he:"ניסיון מקצועי קודם"},
+];
+const $ = id => document.getElementById(id);
+const state = {haveScales:"no", timing:"pre_post", control:"no", funding:"no",
+  sim:null, prepost:{}, demog:new Set(["age","gender","parent_status","prior_experience"])};
+
+function seg(id, key, onChange){
+  $(id).querySelectorAll("button").forEach(b=>b.onclick=()=>{
+    $(id).querySelectorAll("button").forEach(x=>x.classList.remove("on"));
+    b.classList.add("on"); state[key]=b.dataset.v; if(onChange) onChange(b.dataset.v);
+  });
+}
+seg("haveScalesSeg","haveScales", v=>$("haveScalesBox").classList.toggle("hidden", v!=="yes"));
+seg("timingSeg","timing"); seg("controlSeg","control");
+seg("fundingSeg","funding", v=>$("fundingBox").classList.toggle("hidden", v!=="yes"));
+
+// simulation picker (single-select)
+const sg = $("simGrid");
+SIMS.forEach(s=>{
+  const c=document.createElement("div"); c.className="simcard"; c.dataset.k=s.k;
+  c.innerHTML=`<div class="t">${s.t}${s.track?'<span class="tag">'+s.track+'</span>':''}</div><div class="d">${s.d}</div>`;
+  c.onclick=()=>{ sg.querySelectorAll(".simcard").forEach(x=>x.classList.remove("on"));
+    c.classList.add("on"); state.sim=s.k;
+    $("simOtherBox").classList.toggle("hidden", !(s.k==="other"||s.k==="new")); };
+  sg.appendChild(c);
+});
+
+// pre/post outcome chips
+const pc = $("prepostChips"), ps = $("prepostSubs");
+PREPOST.forEach(o=>{
+  const chip=document.createElement("div"); chip.className="chip"; chip.textContent=o.he; chip.dataset.c=o.c;
+  chip.onclick=()=>{
+    const on=chip.classList.toggle("on");
+    if(o.custom) chip.classList.toggle("pink", on);
+    if(on){ state.prepost[o.c]={direction:o.dir, primary:false, label:o.custom?"":o.he}; renderSub(o);}
+    else { delete state.prepost[o.c]; const s=$("sub-"+o.c); if(s)s.remove(); }
+  };
+  pc.appendChild(chip);
+});
+function renderSub(o){
+  const d=document.createElement("div"); d.className="sub"; d.id="sub-"+o.c;
+  d.innerHTML = `<div class="minirow"><strong>${o.he}</strong>
+    ${o.custom?'<input type="text" placeholder="שם המדד" style="max-width:220px" id="lbl-'+o.c+'">':''}
+    <span>כיוון צפוי:</span>
+    <select id="dir-${o.c}"><option value="increase">עולה ▲</option><option value="decrease">יורד ▼</option></select>
+    <label class="check" style="margin:0"><input type="checkbox" id="prim-${o.c}"> מדד ראשי (כותרת)</label></div>`;
+  ps.appendChild(d);
+  $("dir-"+o.c).value=o.dir;
+  $("dir-"+o.c).onchange=e=>state.prepost[o.c].direction=e.target.value;
+  $("prim-"+o.c).onchange=e=>state.prepost[o.c].primary=e.target.checked;
+  if(o.custom) $("lbl-"+o.c).oninput=e=>state.prepost[o.c].label=e.target.value;
+}
+
+// demographics chips
+const dc=$("demoChips");
+DEMOG.forEach(d=>{
+  const chip=document.createElement("div");
+  chip.className="chip"+(state.demog.has(d.k)?" on":""); chip.textContent=d.he;
+  chip.onclick=()=>{ const on=chip.classList.toggle("on"); on?state.demog.add(d.k):state.demog.delete(d.k); };
+  dc.appendChild(chip);
+});
+
+function simName(){
+  const s=SIMS.find(x=>x.k===state.sim);
+  if(!s) return "";
+  if(s.k==="other"||s.k==="new") return $("simOther").value.trim() || s.t;
+  return s.t;
+}
+function buildAnswers(){
+  const outcomes=[];
+  for(const [c,v] of Object.entries(state.prepost)){
+    if(c==="custom") outcomes.push({construct:"custom", label_he:v.label||"מדד מותאם", direction:v.direction, primary:v.primary});
+    else outcomes.push({construct:c, direction:v.direction, primary:v.primary});
+  }
+  if($("po_acceptability").checked) outcomes.push({construct:"acceptability"});
+  if($("po_perceived_change").checked) outcomes.push({construct:"perceived_change"});
+  if($("po_felt_change").checked) outcomes.push({construct:"felt_change"});
+  return {
+    intake_version:"1.1",
+    study:{ title_he:"", collaborator:$("collaborator").value.trim(),
+      pi:"Elad Refoua", coordinator:"Yuval Holzman",
+      population_he:$("population").value.trim(), setting_he:$("setting").value.trim(),
+      language:$("language").value, n_estimate:Number($("n").value)||null, when:$("when").value.trim(),
+      research_value:$("researchValue").value.trim(),
+      funding:{ has: state.funding==="yes", source: state.funding==="yes" ? $("fundingSource").value.trim() : "" } },
+    practice:{ has_simulation: state.sim!=null && state.sim!=="other" ? true : (state.sim==="other"),
+      sim_choice: state.sim, sim_name: simName(), sim_uuid:"",
+      n_sessions: $("nSessions").value, goal_he:$("goal").value.trim() },
+    outcomes,
+    existing_scales:{ have: state.haveScales==="yes", note:$("scalesNote")?$("scalesNote").value.trim():"" },
+    design:{ timing: state.timing, control_group: state.control==="yes" },
+    demographics:[...state.demog],
+    qualitative:true,
+    notes_he:$("notes").value.trim()
+  };
+}
+
+$("submit").onclick=()=>{
+  const a=buildAnswers(); window.__ANSWERS__=a;
+  $("json").textContent=JSON.stringify(a,null,2);
+  $("out").classList.remove("hidden"); $("out").scrollIntoView({behavior:"smooth"});
+};
+$("download").onclick=()=>{
+  const blob=new Blob([JSON.stringify(window.__ANSWERS__,null,2)],{type:"application/json"});
+  const u=URL.createObjectURL(blob); const a=document.createElement("a");
+  a.href=u; a.download="answers.json"; a.click(); URL.revokeObjectURL(u);
+};
+$("copy").onclick=()=>{ navigator.clipboard.writeText($("json").textContent);
+  $("copy").textContent="הועתק ✓"; setTimeout(()=>$("copy").textContent="העתקה",1500); };
+</script>
+</body>
+</html>
