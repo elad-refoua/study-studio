@@ -4,25 +4,26 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex">
-<title>MENTI Study Studio — שאלון תכנון מחקר</title>
+<title>חבילת השת״פ של מנטי — שאלון תכנון מחקר</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0f172a; --bg2:#1e293b; --card:#1e293bcc; --line:#334155;
+    --bg:#0f172a; --card:#1e293bcc; --line:#334155;
     --sky:#38bdf8; --sky2:#0ea5e9; --ink:#e2e8f0; --muted:#94a3b8;
-    --good:#34d399; --warn:#fbbf24; --pink:#f472b6; --violet:#a78bfa; --amber:#fbbf24;
+    --good:#34d399; --pink:#f472b6; --amber:#fbbf24;
   }
   *{box-sizing:border-box}
   body{margin:0;background:linear-gradient(160deg,#0b1220,#0f172a 40%,#0b1220);
     color:var(--ink);font-family:Heebo,system-ui,Arial,sans-serif;line-height:1.6;}
-  .wrap{max-width:840px;margin:0 auto;padding:28px 18px 80px;}
-  header.hero{text-align:center;padding:34px 18px 12px;}
+  .wrap{max-width:840px;margin:0 auto;padding:20px 18px 80px;}
+  .langbar{display:flex;justify-content:flex-end;gap:0;margin:6px 0 0;}
+  .langbar .seg button{min-width:54px}
+  header.hero{text-align:center;padding:18px 18px 12px;}
   .hero h1{font-size:30px;font-weight:800;margin:0 0 6px;
     background:linear-gradient(90deg,var(--sky),#a78bfa);-webkit-background-clip:text;background-clip:text;color:transparent;}
   .hero p{color:var(--muted);margin:4px 0 0;font-size:15px;}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;
-    padding:20px 20px;margin:16px 0;backdrop-filter:blur(4px);}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin:16px 0;backdrop-filter:blur(4px);}
   .card h2{font-size:18px;margin:0 0 4px;display:flex;align-items:center;gap:8px;}
   .card .hint{color:var(--muted);font-size:13px;margin:0 0 14px;}
   .num{display:inline-flex;width:26px;height:26px;border-radius:50%;background:var(--sky2);
@@ -53,10 +54,8 @@
   .cta{display:block;width:100%;margin:22px 0 0;padding:15px;border:none;border-radius:14px;cursor:pointer;
     background:linear-gradient(90deg,var(--sky),#6366f1);color:#fff;font-weight:800;font-size:17px;font-family:inherit;}
   .cta:hover{filter:brightness(1.07);}
-  /* simulations explainer + picker */
   .info{background:linear-gradient(160deg,#0b1b2e,#101c33);border:1px solid #1e3a5f;}
-  .track{margin:10px 0;}
-  .track h3{margin:0 0 4px;font-size:15px;display:flex;align-items:center;gap:8px;}
+  .track{margin:10px 0;} .track h3{margin:0 0 4px;font-size:15px;display:flex;align-items:center;gap:8px;}
   .dot{width:10px;height:10px;border-radius:50%;display:inline-block;}
   .track p{margin:0;color:var(--muted);font-size:13.5px;}
   .simgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin:8px 0;}
@@ -78,143 +77,132 @@
 </head>
 <body>
 <div class="wrap">
+  <div class="langbar"><div class="seg" id="langSeg">
+    <button type="button" data-v="he" class="on">עברית</button>
+    <button type="button" data-v="en">English</button>
+  </div></div>
+
   <header class="hero">
-    <h1>בואו נתכנן את המחקר שלך</h1>
-    <p>כמה שאלות קצרות — ומכאן אנחנו בונים עבורך את כל המחקר. הפגישה עצמה תהיה קצרה ולעניין.</p>
+    <h1 data-i18n="hero_t"></h1>
+    <p data-i18n="hero_s"></p>
   </header>
 
-  <!-- About our simulations (explainer) -->
   <div class="card info">
-    <h2>🧠 הסימולציות של MENTI</h2>
-    <p class="hint">סימולציות אימון מבוססות-AI: המשתתף/ת משוחח/ת עם דמות מציאותית, עם מנחה שמתערב/ת תוך כדי, ומשוב מובנה בסוף. שלוש משפחות:</p>
-    <div class="track"><h3><span class="dot" style="background:var(--pink)"></span> MentiParent — הורים</h3>
-      <p>הורה מתרגל שיחה עם ילד/ה מדומה. למשל <strong>ליה</strong> (חרדה בזמן מלחמה, בת 7), <strong>דני</strong> (ניכור הורי, בן 14), <strong>אוולין</strong> (גבולות והתנהגות מסוכנת, בת 15).</p></div>
-    <div class="track"><h3><span class="dot" style="background:var(--sky)"></span> MentiTherapist — מטפלים ואנשי מקצוע</h3>
-      <p>אימון מיומנויות קליניות. למשל <strong>יואב</strong> (דיאלוג סוקרטי ב-CPT), <strong>ד״ר דוֵק / קרול</strong> (זיהוי צרכים פסיכולוגיים), <strong>רינה</strong> (דיאלוג תומך-צרכים לסטודנטים לייעוץ, SDT), וסוויטת <strong>UP</strong> (איתן ו-8 מודולים לוויסות רגשי).</p></div>
-    <div class="track"><h3><span class="dot" style="background:var(--amber)"></span> MentiCare — אומנה</h3>
-      <p>הכשרת אנשי מקצוע בעולם האומנה. למשל <strong>ג'ולי</strong> (הנחיית אם אומנת).</p></div>
-    <p class="note">אפשר לבחור סימולציה קיימת — או לבקש שנבנה אחת חדשה יחד, מותאמת לנושא שלך.</p>
+    <h2 data-i18n="sims_title"></h2>
+    <p class="hint" data-i18n="sims_intro"></p>
+    <div class="track"><h3><span class="dot" style="background:var(--pink)"></span> <span data-i18n="trk_parent_h"></span></h3>
+      <p data-i18n-html="trk_parent_p"></p></div>
+    <div class="track"><h3><span class="dot" style="background:var(--sky)"></span> <span data-i18n="trk_ther_h"></span></h3>
+      <p data-i18n-html="trk_ther_p"></p></div>
+    <div class="track"><h3><span class="dot" style="background:var(--amber)"></span> <span data-i18n="trk_care_h"></span></h3>
+      <p data-i18n-html="trk_care_p"></p></div>
+    <p class="note" data-i18n="sims_note"></p>
   </div>
 
-  <!-- 1 -->
   <div class="card">
-    <h2><span class="num">1</span> עליך ועל הקבוצה</h2>
-    <p class="hint">מי עורך/ת המחקר, מי הנבדקים, ובאיזו מסגרת.</p>
-    <label class="q">שם מלא ותפקיד</label>
-    <input type="text" id="collaborator" placeholder="לדוגמה: ד״ר חילי כוכבי, מרצה">
+    <h2><span class="num">1</span> <span data-i18n="s1_t"></span></h2>
+    <p class="hint" data-i18n="s1_h"></p>
+    <label class="q" data-i18n="l_collab"></label>
+    <input type="text" id="collaborator" data-ph="ph_collab">
     <div class="row">
-      <div><label class="q">מסגרת / מקום העברה</label><input type="text" id="setting" placeholder="לדוגמה: המרכז האקדמי למשפט ולעסקים — קורס שנה א'"></div>
-      <div><label class="q">שפת המחקר</label>
-        <select id="language"><option value="he">עברית</option><option value="en">אנגלית</option></select></div>
+      <div><label class="q" data-i18n="l_setting"></label><input type="text" id="setting" data-ph="ph_setting"></div>
+      <div><label class="q" data-i18n="l_studylang"></label>
+        <select id="language"><option value="he" data-i18n="opt_he"></option><option value="en" data-i18n="opt_en"></option></select></div>
     </div>
-    <label class="q">מי הנבדקים?</label>
-    <input type="text" id="population" placeholder="לדוגמה: מתאמנות שנה א' בפסיכולוגיה חינוכית">
+    <label class="q" data-i18n="l_pop"></label>
+    <input type="text" id="population" data-ph="ph_pop">
     <div class="row">
-      <div><label class="q">כמה סטודנטים / משתתפים בערך?</label><input type="number" id="n" min="1" placeholder="40"></div>
-      <div><label class="q">מתי (תאריך העברה)?</label><input type="text" id="when" placeholder="2026-06-07"></div>
+      <div><label class="q" data-i18n="l_n"></label><input type="number" id="n" min="1" placeholder="40"></div>
+      <div><label class="q" data-i18n="l_when"></label><input type="text" id="when" placeholder="2026-06-07"></div>
     </div>
   </div>
 
-  <!-- 2 -->
   <div class="card">
-    <h2><span class="num">2</span> הסימולציה</h2>
-    <p class="hint">איזו סימולציה תרצה/י להעביר, כמה פעמים, ומה הערך המחקרי.</p>
-    <label class="q">איזו סימולציה?</label>
+    <h2><span class="num">2</span> <span data-i18n="s2_t"></span></h2>
+    <p class="hint" data-i18n="s2_h"></p>
+    <label class="q" data-i18n="l_whichsim"></label>
     <div class="simgrid" id="simGrid"></div>
-    <div id="simOtherBox" class="sub hidden"><input type="text" id="simOther" placeholder="תאר/י את הסימולציה הרצויה או הקישור"></div>
-    <div class="row">
-      <div><label class="q">כמה פעמים יעברו את הסימולציה?</label>
-        <select id="nSessions"><option value="1">פעם אחת</option><option value="2">פעמיים</option><option value="3">שלוש</option><option value="multiple">כמה פעמים / לאורך זמן</option></select></div>
-    </div>
-    <label class="q">במשפט או שניים: מה המשתתפים אמורים להרוויח או לשנות?</label>
-    <textarea id="goal" placeholder="לדוגמה: להבין את חוויית ההורה, להרגיש מסוגלות גבוהה יותר, ולהפחית חשש."></textarea>
-    <label class="q">מה הערך המחקרי / התרומה? (למה זה חשוב ומה חדש כאן)</label>
-    <textarea id="researchValue" placeholder="לדוגמה: ראשונים לבחון אם משחק תפקיד ההורה בסימולציית AI מעלה מסוגלות ומפחית חשש אצל מתאמנים."></textarea>
+    <div id="simOtherBox" class="sub hidden"><input type="text" id="simOther" data-ph="ph_simother"></div>
+    <div class="row"><div><label class="q" data-i18n="l_nsess"></label>
+      <select id="nSessions">
+        <option value="1" data-i18n="sess1"></option><option value="2" data-i18n="sess2"></option>
+        <option value="3" data-i18n="sess3"></option><option value="multiple" data-i18n="sessM"></option></select></div></div>
+    <label class="q" data-i18n="l_goal"></label>
+    <textarea id="goal" data-ph="ph_goal"></textarea>
+    <label class="q" data-i18n="l_resval"></label>
+    <textarea id="researchValue" data-ph="ph_resval"></textarea>
   </div>
 
-  <!-- 3 -->
   <div class="card">
-    <h2><span class="num">3</span> מה למדוד — לפני ואחרי</h2>
-    <p class="hint">בחר/י את התוצאות שחשובות לך. לכל אחת נשאל אם היא צפויה לעלות או לרדת.</p>
+    <h2><span class="num">3</span> <span data-i18n="s3_t"></span></h2>
+    <p class="hint" data-i18n="s3_h"></p>
     <div class="chips" id="prepostChips"></div>
     <div id="prepostSubs"></div>
   </div>
 
-  <!-- 4 -->
   <div class="card">
-    <h2><span class="num">4</span> בלוקים אחרי הסימולציה</h2>
-    <p class="hint">מדדים שנמדדים רק בסוף (משוב, שינוי נתפס).</p>
-    <label class="check"><input type="checkbox" id="po_acceptability" checked> קבילות הסימולציה (כמה הרגישה אמיתית, מועילה, ושווה המלצה)</label>
-    <label class="check"><input type="checkbox" id="po_perceived_change"> שינוי נתפס (האם החרדה ירדה / הסקרנות עלתה, בדיווח רטרוספקטיבי)</label>
-    <label class="check"><input type="checkbox" id="po_felt_change"> תחושת שינוי ישירה (האם הרגישו ששינתה משהו)</label>
+    <h2><span class="num">4</span> <span data-i18n="s4_t"></span></h2>
+    <p class="hint" data-i18n="s4_h"></p>
+    <label class="check"><input type="checkbox" id="po_acceptability" checked> <span data-i18n="po_acc"></span></label>
+    <label class="check"><input type="checkbox" id="po_perceived_change"> <span data-i18n="po_perc"></span></label>
+    <label class="check"><input type="checkbox" id="po_felt_change"> <span data-i18n="po_felt"></span></label>
   </div>
 
-  <!-- 5 -->
   <div class="card">
-    <h2><span class="num">5</span> מדדים קיימים</h2>
-    <p class="hint">יש לך שאלון או פריטים ספציפיים שתרצה/י להשתמש בהם?</p>
+    <h2><span class="num">5</span> <span data-i18n="s5_t"></span></h2>
+    <p class="hint" data-i18n="s5_h"></p>
     <div class="seg" id="haveScalesSeg">
-      <button type="button" data-v="no" class="on">לא — הציעו לי</button>
-      <button type="button" data-v="yes">כן — יש לי</button>
+      <button type="button" data-v="no" class="on" data-i18n="hs_no"></button>
+      <button type="button" data-v="yes" data-i18n="hs_yes"></button>
     </div>
-    <div id="haveScalesBox" class="sub hidden"><textarea id="scalesNote" placeholder="פרט/י, או צרף/י בהמשך."></textarea></div>
+    <div id="haveScalesBox" class="sub hidden"><textarea id="scalesNote" data-ph="ph_scales"></textarea></div>
   </div>
 
-  <!-- 6 -->
   <div class="card">
-    <h2><span class="num">6</span> תכן המחקר</h2>
+    <h2><span class="num">6</span> <span data-i18n="s6_t"></span></h2>
     <div class="row">
-      <div>
-        <label class="q">מתי למדוד?</label>
+      <div><label class="q" data-i18n="l_timing"></label>
         <div class="seg" id="timingSeg">
-          <button type="button" data-v="pre_post" class="on">לפני ואחרי</button>
-          <button type="button" data-v="post_only">רק אחרי</button>
-        </div>
-      </div>
-      <div>
-        <label class="q">קבוצת השוואה / ביקורת?</label>
+          <button type="button" data-v="pre_post" class="on" data-i18n="tm_prepost"></button>
+          <button type="button" data-v="post_only" data-i18n="tm_post"></button></div></div>
+      <div><label class="q" data-i18n="l_control"></label>
         <div class="seg" id="controlSeg">
-          <button type="button" data-v="no" class="on">לא (פיילוט)</button>
-          <button type="button" data-v="yes">כן</button>
-        </div>
-      </div>
+          <button type="button" data-v="no" class="on" data-i18n="ctl_no"></button>
+          <button type="button" data-v="yes" data-i18n="ctl_yes"></button></div></div>
     </div>
   </div>
 
-  <!-- 7 -->
   <div class="card">
-    <h2><span class="num">7</span> פרטי רקע לאיסוף</h2>
-    <p class="hint">אילו פרטים דמוגרפיים לאסוף.</p>
+    <h2><span class="num">7</span> <span data-i18n="s7_t"></span></h2>
+    <p class="hint" data-i18n="s7_h"></p>
     <div class="chips" id="demoChips"></div>
   </div>
 
-  <!-- 8 -->
   <div class="card">
-    <h2><span class="num">8</span> מימון</h2>
-    <p class="hint">האם יש מקור מימון למחקר?</p>
+    <h2><span class="num">8</span> <span data-i18n="s8_t"></span></h2>
+    <p class="hint" data-i18n="s8_h"></p>
     <div class="seg" id="fundingSeg">
-      <button type="button" data-v="no" class="on">אין / לא בטוח</button>
-      <button type="button" data-v="yes">כן — יש</button>
+      <button type="button" data-v="no" class="on" data-i18n="fn_no"></button>
+      <button type="button" data-v="yes" data-i18n="fn_yes"></button>
     </div>
-    <div id="fundingBox" class="sub hidden"><input type="text" id="fundingSource" placeholder="מהו מקור המימון? (קרן, מענק, מוסד, סכום אם ידוע)"></div>
+    <div id="fundingBox" class="sub hidden"><input type="text" id="fundingSource" data-ph="ph_fund"></div>
   </div>
 
-  <!-- 9 -->
   <div class="card">
-    <h2><span class="num">9</span> הערות</h2>
-    <p class="hint">כל דבר שחשוב שייכלל — או שעדיף להימנע ממנו.</p>
-    <textarea id="notes" placeholder="מקום חופשי להערות, בקשות, או דגשים."></textarea>
+    <h2><span class="num">9</span> <span data-i18n="s9_t"></span></h2>
+    <p class="hint" data-i18n="s9_h"></p>
+    <textarea id="notes" data-ph="ph_notes"></textarea>
   </div>
 
-  <button class="cta" id="submit">צרו לי טיוטת מחקר ⟵</button>
+  <button class="cta" id="submit" data-i18n="cta"></button>
 
   <div id="out" class="hidden">
     <div class="card">
-      <h2>✓ קיבלנו — זה מה שנבנה ממך</h2>
-      <p class="note">הקובץ הזה (answers.json) עובר לסוכן, שמרכיב ממנו טיוטת מחקר מלאה + אג'נדה קצרה לפגישה.</p>
+      <h2 data-i18n="out_t"></h2>
+      <p class="note" data-i18n="out_s"></p>
       <div class="outbtns">
-        <button class="primary" id="download">⬇ הורדת answers.json</button>
-        <button id="copy">העתקה</button>
+        <button class="primary" id="download" data-i18n="btn_dl"></button>
+        <button id="copy" data-i18n="btn_copy"></button>
       </div>
       <pre id="json"></pre>
     </div>
@@ -222,32 +210,104 @@
 </div>
 
 <script>
+const T = {
+ he:{ dir:"rtl",
+  hero_t:"חבילת השת״פ של מנטי", hero_s:"בואו נתכנן יחד את המחקר שלך — כמה שאלות קצרות, ומכאן אנחנו בונים עבורך את כל המחקר. הפגישה עצמה תהיה קצרה ולעניין.",
+  sims_title:"🧠 הסימולציות של מנטי", sims_intro:"סימולציות אימון מבוססות-AI: המשתתף/ת משוחח/ת עם דמות מציאותית, עם מנחה שמתערב/ת תוך כדי, ומשוב מובנה בסוף. שלוש משפחות:",
+  trk_parent_h:"MentiParent — הורים", trk_parent_p:"הורה מתרגל שיחה עם ילד/ה מדומה. למשל <strong>ליה</strong> (חרדה בזמן מלחמה, בת 7), <strong>דני</strong> (ניכור הורי, בן 14), <strong>אוולין</strong> (גבולות והתנהגות מסוכנת, בת 15).",
+  trk_ther_h:"MentiTherapist — מטפלים ואנשי מקצוע", trk_ther_p:"אימון מיומנויות קליניות. למשל <strong>יואב</strong> (דיאלוג סוקרטי ב-CPT), <strong>ד״ר דוֵק / קרול</strong> (זיהוי צרכים פסיכולוגיים), <strong>רינה</strong> (דיאלוג תומך-צרכים לסטודנטים לייעוץ), וסוויטת <strong>UP</strong> (איתן ו-8 מודולים לוויסות רגשי).",
+  trk_care_h:"MentiCare — אומנה", trk_care_p:"הכשרת אנשי מקצוע בעולם האומנה. למשל <strong>ג'ולי</strong> (הנחיית אם אומנת).",
+  sims_note:"אפשר לבחור סימולציה קיימת — או לבקש שנבנה אחת חדשה יחד, מותאמת לנושא שלך.",
+  s1_t:"עליך ועל הקבוצה", s1_h:"מי עורך/ת המחקר, מי הנבדקים, ובאיזו מסגרת.",
+  l_collab:"שם מלא ותפקיד", ph_collab:"לדוגמה: ד״ר חילי כוכבי, מרצה",
+  l_setting:"מסגרת / מקום העברה", ph_setting:"לדוגמה: המרכז האקדמי למשפט ולעסקים — קורס שנה א'",
+  l_studylang:"שפת המחקר", opt_he:"עברית", opt_en:"אנגלית",
+  l_pop:"מי הנבדקים?", ph_pop:"לדוגמה: מתאמנות שנה א' בפסיכולוגיה חינוכית",
+  l_n:"כמה סטודנטים / משתתפים בערך?", l_when:"מתי (תאריך העברה)?",
+  s2_t:"הסימולציה", s2_h:"איזו סימולציה תרצה/י להעביר, כמה פעמים, ומה הערך המחקרי.",
+  l_whichsim:"איזו סימולציה?", ph_simother:"תאר/י את הסימולציה הרצויה או הקישור",
+  l_nsess:"כמה פעמים יעברו את הסימולציה?", sess1:"פעם אחת", sess2:"פעמיים", sess3:"שלוש", sessM:"כמה פעמים / לאורך זמן",
+  l_goal:"במשפט או שניים: מה המשתתפים אמורים להרוויח או לשנות?", ph_goal:"לדוגמה: להבין את חוויית ההורה, להרגיש מסוגלות גבוהה יותר, ולהפחית חשש.",
+  l_resval:"מה הערך המחקרי / התרומה? (למה זה חשוב ומה חדש כאן)", ph_resval:"לדוגמה: ראשונים לבחון אם משחק תפקיד ההורה בסימולציית AI מעלה מסוגלות ומפחית חשש אצל מתאמנים.",
+  s3_t:"מה למדוד — לפני ואחרי", s3_h:"בחר/י את התוצאות שחשובות לך. לכל אחת נשאל אם היא צפויה לעלות או לרדת.",
+  s4_t:"בלוקים אחרי הסימולציה", s4_h:"מדדים שנמדדים רק בסוף (משוב, שינוי נתפס).",
+  po_acc:"קבילות הסימולציה (כמה הרגישה אמיתית, מועילה, ושווה המלצה)", po_perc:"שינוי נתפס (האם החרדה ירדה / הסקרנות עלתה, בדיווח רטרוספקטיבי)", po_felt:"תחושת שינוי ישירה (האם הרגישו ששינתה משהו)",
+  s5_t:"מדדים קיימים", s5_h:"יש לך שאלון או פריטים ספציפיים שתרצה/י להשתמש בהם?", hs_no:"לא — הציעו לי", hs_yes:"כן — יש לי", ph_scales:"פרט/י, או צרף/י בהמשך.",
+  s6_t:"תכן המחקר", l_timing:"מתי למדוד?", tm_prepost:"לפני ואחרי", tm_post:"רק אחרי", l_control:"קבוצת השוואה / ביקורת?", ctl_no:"לא (פיילוט)", ctl_yes:"כן",
+  s7_t:"פרטי רקע לאיסוף", s7_h:"אילו פרטים דמוגרפיים לאסוף.",
+  s8_t:"מימון", s8_h:"האם יש מקור מימון למחקר?", fn_no:"אין / לא בטוח", fn_yes:"כן — יש", ph_fund:"מהו מקור המימון? (קרן, מענק, מוסד, סכום אם ידוע)",
+  s9_t:"הערות", s9_h:"כל דבר שחשוב שייכלל — או שעדיף להימנע ממנו.", ph_notes:"מקום חופשי להערות, בקשות, או דגשים.",
+  cta:"צרו לי טיוטת מחקר ⟵", out_t:"✓ קיבלנו — זה מה שנבנה ממך", out_s:"הקובץ הזה (answers.json) עובר לסוכן, שמרכיב ממנו טיוטת מחקר מלאה + אג'נדה קצרה לפגישה.",
+  btn_dl:"⬇ הורדת answers.json", btn_copy:"העתקה",
+  dir_up:"עולה ▲", dir_dn:"יורד ▼", prim:"מדד ראשי (כותרת)", expdir:"כיוון צפוי:", lblph:"שם המדד" },
+ en:{ dir:"ltr",
+  hero_t:"MENTI Collaboration Package", hero_s:"Let's plan your study together — a few short questions, and from here we build the whole study for you. The meeting itself will be short and focused.",
+  sims_title:"🧠 MENTI's simulations", sims_intro:"AI-based training simulations: the participant talks with a realistic character, with a guide intervening along the way and structured feedback at the end. Three families:",
+  trk_parent_h:"MentiParent — Parents", trk_parent_p:"A parent practices a conversation with a simulated child. E.g. <strong>Lia</strong> (wartime anxiety, age 7), <strong>Danny</strong> (parental alienation, age 14), <strong>Evelyn</strong> (boundaries & risky behavior, age 15).",
+  trk_ther_h:"MentiTherapist — Clinicians & professionals", trk_ther_p:"Clinical-skills training. E.g. <strong>Yoav</strong> (Socratic dialogue in CPT), <strong>Dr. Dweck / Carol</strong> (identifying psychological needs), <strong>Rina</strong> (needs-supportive dialogue for counseling students), and the <strong>UP</strong> suite (Ethan & 8 emotion-regulation modules).",
+  trk_care_h:"MentiCare — Foster care", trk_care_p:"Training professionals in the foster-care world. E.g. <strong>Julie</strong> (guiding a foster mother).",
+  sims_note:"You can pick an existing simulation — or ask us to build a new one together, tailored to your topic.",
+  s1_t:"You & the cohort", s1_h:"Who runs the study, who the participants are, and in what setting.",
+  l_collab:"Full name & role", ph_collab:"e.g. Dr. Hili Kochavi, lecturer",
+  l_setting:"Setting / location", ph_setting:"e.g. Academic Center for Law & Business — year-1 course",
+  l_studylang:"Study language", opt_he:"Hebrew", opt_en:"English",
+  l_pop:"Who are the participants?", ph_pop:"e.g. first-year MA Educational Psychology trainees",
+  l_n:"Roughly how many students / participants?", l_when:"When (date)?",
+  s2_t:"The simulation", s2_h:"Which simulation, how many times, and the research value.",
+  l_whichsim:"Which simulation?", ph_simother:"Describe the simulation you want, or a link",
+  l_nsess:"How many times will they run the simulation?", sess1:"Once", sess2:"Twice", sess3:"Three times", sessM:"Several times / over time",
+  l_goal:"In a sentence or two: what should participants gain or change?", ph_goal:"e.g. understand the parent's experience, feel more capable, and reduce apprehension.",
+  l_resval:"What's the research value / contribution? (why it matters and what's new)", ph_resval:"e.g. first to test whether playing the parent role in an AI simulation raises self-efficacy and reduces apprehension among trainees.",
+  s3_t:"What to measure — pre & post", s3_h:"Pick the outcomes that matter to you. For each we'll ask whether it's expected to go up or down.",
+  s4_t:"Post-simulation blocks", s4_h:"Measures taken only at the end (feedback, perceived change).",
+  po_acc:"Simulation acceptability (how real, useful, and recommendable it felt)", po_perc:"Perceived change (did anxiety drop / curiosity rise, retrospectively)", po_felt:"Direct felt change (did it shift something)",
+  s5_t:"Existing measures", s5_h:"Do you have a specific questionnaire or items you want to use?", hs_no:"No — suggest for me", hs_yes:"Yes — I have", ph_scales:"Describe, or attach later.",
+  s6_t:"Study design", l_timing:"When to measure?", tm_prepost:"Pre & post", tm_post:"Post only", l_control:"Comparison / control group?", ctl_no:"No (pilot)", ctl_yes:"Yes",
+  s7_t:"Background details to collect", s7_h:"Which demographics to collect.",
+  s8_t:"Funding", s8_h:"Is there a funding source for the study?", fn_no:"None / not sure", fn_yes:"Yes — there is", ph_fund:"What is the funding source? (fund, grant, institution, amount if known)",
+  s9_t:"Notes", s9_h:"Anything important to include — or to avoid.", ph_notes:"Free space for notes, requests, or emphases.",
+  cta:"Build my study draft ⟶", out_t:"✓ Got it — here's what we'll build from you", out_s:"This file (answers.json) goes to the agent, which assembles a full study draft + a short meeting agenda.",
+  btn_dl:"⬇ Download answers.json", btn_copy:"Copy",
+  dir_up:"Up ▲", dir_dn:"Down ▼", prim:"Primary (headline) outcome", expdir:"Expected direction:", lblph:"Measure name" }
+};
+
 const SIMS = [
-  {k:"lia", t:"ליה", d:"חרדה בזמן מלחמה (ילדה בת 7)", track:"הורים"},
-  {k:"danny", t:"דני", d:"ניכור הורי (נער בן 14)", track:"הורים"},
-  {k:"evelyn", t:"אוולין", d:"גבולות והתנהגות מסוכנת (בת 15)", track:"הורים"},
-  {k:"yoav", t:"יואב", d:"דיאלוג סוקרטי באימון מטפלים (CPT)", track:"מטפלים"},
-  {k:"carol", t:"ד״ר דוֵק (קרול)", d:"זיהוי צרכים פסיכולוגיים", track:"מטפלים"},
-  {k:"rina", t:"רינה", d:"דיאלוג תומך-צרכים לסטודנטים לייעוץ (SDT)", track:"מטפלים"},
-  {k:"up", t:"סוויטת UP", d:"איתן ו-8 מודולים לוויסות רגשי", track:"מטפלים"},
-  {k:"julie", t:"ג'ולי", d:"הכשרת מנחי אומנה", track:"אומנה"},
-  {k:"other", t:"סימולציה אחרת", d:"עוד לא בטוח/ה / אחר", track:""},
-  {k:"new", t:"סימולציה חדשה", d:"נבנה יחד, מותאמת לנושא", track:""},
+  {k:"lia", t:{he:"ליה",en:"Lia"}, d:{he:"חרדה בזמן מלחמה (ילדה בת 7)",en:"Wartime anxiety (girl, age 7)"}, track:{he:"הורים",en:"Parents"}},
+  {k:"danny", t:{he:"דני",en:"Danny"}, d:{he:"ניכור הורי (נער בן 14)",en:"Parental alienation (boy, 14)"}, track:{he:"הורים",en:"Parents"}},
+  {k:"evelyn", t:{he:"אוולין",en:"Evelyn"}, d:{he:"גבולות והתנהגות מסוכנת (בת 15)",en:"Boundaries & risky behavior (15)"}, track:{he:"הורים",en:"Parents"}},
+  {k:"yoav", t:{he:"יואב",en:"Yoav"}, d:{he:"דיאלוג סוקרטי באימון מטפלים (CPT)",en:"Socratic dialogue in CPT training"}, track:{he:"מטפלים",en:"Clinicians"}},
+  {k:"carol", t:{he:"ד״ר דוֵק (קרול)",en:"Dr. Dweck (Carol)"}, d:{he:"זיהוי צרכים פסיכולוגיים",en:"Identifying psychological needs"}, track:{he:"מטפלים",en:"Clinicians"}},
+  {k:"rina", t:{he:"רינה",en:"Rina"}, d:{he:"דיאלוג תומך-צרכים לסטודנטים לייעוץ",en:"Needs-supportive dialogue (counseling)"}, track:{he:"מטפלים",en:"Clinicians"}},
+  {k:"up", t:{he:"סוויטת UP",en:"UP suite"}, d:{he:"איתן ו-8 מודולים לוויסות רגשי",en:"Ethan & 8 emotion-regulation modules"}, track:{he:"מטפלים",en:"Clinicians"}},
+  {k:"julie", t:{he:"ג'ולי",en:"Julie"}, d:{he:"הכשרת מנחי אומנה",en:"Foster-care coordinator training"}, track:{he:"אומנה",en:"Foster"}},
+  {k:"other", t:{he:"סימולציה אחרת",en:"Another simulation"}, d:{he:"עוד לא בטוח/ה / אחר",en:"Not sure yet / other"}, track:{he:"",en:""}},
+  {k:"new", t:{he:"סימולציה חדשה",en:"A new simulation"}, d:{he:"נבנה יחד, מותאמת לנושא",en:"We'll build it together"}, track:{he:"",en:""}},
 ];
 const PREPOST = [
-  {c:"self_efficacy", he:"מסוגלות עצמית", dir:"increase"},
-  {c:"apprehension",  he:"חשש / חרדה",    dir:"decrease"},
-  {c:"mentalization", he:"מנטליזציה (יכולת רפלקטיבית)", dir:"increase"},
-  {c:"custom",        he:"משהו אחר (נכתוב לך פריטים)", dir:"increase", custom:true},
+  {c:"self_efficacy", l:{he:"מסוגלות עצמית",en:"Self-efficacy"}, dir:"increase"},
+  {c:"apprehension",  l:{he:"חשש / חרדה",en:"Apprehension / anxiety"}, dir:"decrease"},
+  {c:"mentalization", l:{he:"מנטליזציה (יכולת רפלקטיבית)",en:"Mentalization (reflective capacity)"}, dir:"increase"},
+  {c:"custom",        l:{he:"משהו אחר (נכתוב לך פריטים)",en:"Something else (we'll draft items)"}, dir:"increase", custom:true},
 ];
 const DEMOG = [
-  {k:"age",he:"גיל"},{k:"gender",he:"מגדר"},{k:"parent_status",he:"הורות"},
-  {k:"marital_status",he:"מצב משפחתי"},{k:"religion",he:"דת"},
-  {k:"religiosity",he:"רמת דתיות"},{k:"prior_experience",he:"ניסיון מקצועי קודם"},
+  {k:"age",l:{he:"גיל",en:"Age"}},{k:"gender",l:{he:"מגדר",en:"Gender"}},{k:"parent_status",l:{he:"הורות",en:"Parent status"}},
+  {k:"marital_status",l:{he:"מצב משפחתי",en:"Marital status"}},{k:"religion",l:{he:"דת",en:"Religion"}},
+  {k:"religiosity",l:{he:"רמת דתיות",en:"Religiosity"}},{k:"prior_experience",l:{he:"ניסיון מקצועי קודם",en:"Prior professional experience"}},
 ];
 const $ = id => document.getElementById(id);
-const state = {haveScales:"no", timing:"pre_post", control:"no", funding:"no",
-  sim:null, prepost:{}, demog:new Set(["age","gender","parent_status","prior_experience"])};
+let LANG = "he";
+const state = {haveScales:"no", timing:"pre_post", control:"no", funding:"no", sim:null,
+  prepost:{}, demog:new Set(["age","gender","parent_status","prior_experience"])};
+
+function applyLang(lang){
+  LANG = lang; const t = T[lang];
+  document.documentElement.lang = lang; document.documentElement.dir = t.dir;
+  document.querySelectorAll("[data-i18n]").forEach(e=>{ const k=e.getAttribute("data-i18n"); if(t[k]!=null) e.textContent=t[k]; });
+  document.querySelectorAll("[data-i18n-html]").forEach(e=>{ const k=e.getAttribute("data-i18n-html"); if(t[k]!=null) e.innerHTML=t[k]; });
+  document.querySelectorAll("[data-ph]").forEach(e=>{ const k=e.getAttribute("data-ph"); if(t[k]!=null) e.placeholder=t[k]; });
+  renderSims(); renderChips(); renderDemog(); renderSubs();
+  $("langSeg").querySelectorAll("button").forEach(b=>b.classList.toggle("on", b.dataset.v===lang));
+}
 
 function seg(id, key, onChange){
   $(id).querySelectorAll("button").forEach(b=>b.onclick=()=>{
@@ -258,59 +318,62 @@ function seg(id, key, onChange){
 seg("haveScalesSeg","haveScales", v=>$("haveScalesBox").classList.toggle("hidden", v!=="yes"));
 seg("timingSeg","timing"); seg("controlSeg","control");
 seg("fundingSeg","funding", v=>$("fundingBox").classList.toggle("hidden", v!=="yes"));
+$("langSeg").querySelectorAll("button").forEach(b=>b.onclick=()=>applyLang(b.dataset.v));
 
-// simulation picker (single-select)
-const sg = $("simGrid");
-SIMS.forEach(s=>{
-  const c=document.createElement("div"); c.className="simcard"; c.dataset.k=s.k;
-  c.innerHTML=`<div class="t">${s.t}${s.track?'<span class="tag">'+s.track+'</span>':''}</div><div class="d">${s.d}</div>`;
-  c.onclick=()=>{ sg.querySelectorAll(".simcard").forEach(x=>x.classList.remove("on"));
-    c.classList.add("on"); state.sim=s.k;
-    $("simOtherBox").classList.toggle("hidden", !(s.k==="other"||s.k==="new")); };
-  sg.appendChild(c);
-});
-
-// pre/post outcome chips
-const pc = $("prepostChips"), ps = $("prepostSubs");
-PREPOST.forEach(o=>{
-  const chip=document.createElement("div"); chip.className="chip"; chip.textContent=o.he; chip.dataset.c=o.c;
-  chip.onclick=()=>{
-    const on=chip.classList.toggle("on");
-    if(o.custom) chip.classList.toggle("pink", on);
-    if(on){ state.prepost[o.c]={direction:o.dir, primary:false, label:o.custom?"":o.he}; renderSub(o);}
-    else { delete state.prepost[o.c]; const s=$("sub-"+o.c); if(s)s.remove(); }
-  };
-  pc.appendChild(chip);
-});
-function renderSub(o){
-  const d=document.createElement("div"); d.className="sub"; d.id="sub-"+o.c;
-  d.innerHTML = `<div class="minirow"><strong>${o.he}</strong>
-    ${o.custom?'<input type="text" placeholder="שם המדד" style="max-width:220px" id="lbl-'+o.c+'">':''}
-    <span>כיוון צפוי:</span>
-    <select id="dir-${o.c}"><option value="increase">עולה ▲</option><option value="decrease">יורד ▼</option></select>
-    <label class="check" style="margin:0"><input type="checkbox" id="prim-${o.c}"> מדד ראשי (כותרת)</label></div>`;
-  ps.appendChild(d);
-  $("dir-"+o.c).value=o.dir;
-  $("dir-"+o.c).onchange=e=>state.prepost[o.c].direction=e.target.value;
-  $("prim-"+o.c).onchange=e=>state.prepost[o.c].primary=e.target.checked;
-  if(o.custom) $("lbl-"+o.c).oninput=e=>state.prepost[o.c].label=e.target.value;
+function renderSims(){
+  const sg=$("simGrid"); sg.innerHTML="";
+  SIMS.forEach(s=>{
+    const c=document.createElement("div"); c.className="simcard"+(state.sim===s.k?" on":""); c.dataset.k=s.k;
+    const trk=s.track[LANG]?'<span class="tag">'+s.track[LANG]+'</span>':'';
+    c.innerHTML=`<div class="t">${s.t[LANG]}${trk}</div><div class="d">${s.d[LANG]}</div>`;
+    c.onclick=()=>{ sg.querySelectorAll(".simcard").forEach(x=>x.classList.remove("on"));
+      c.classList.add("on"); state.sim=s.k;
+      $("simOtherBox").classList.toggle("hidden", !(s.k==="other"||s.k==="new")); };
+    sg.appendChild(c);
+  });
+}
+function renderChips(){
+  const pc=$("prepostChips"); pc.innerHTML="";
+  PREPOST.forEach(o=>{
+    const chip=document.createElement("div"); chip.className="chip"+(state.prepost[o.c]?" on":"")+(o.custom&&state.prepost[o.c]?" pink":"");
+    chip.textContent=o.l[LANG]; chip.dataset.c=o.c;
+    chip.onclick=()=>{
+      const on=chip.classList.toggle("on");
+      if(o.custom) chip.classList.toggle("pink", on);
+      if(on){ state.prepost[o.c]={direction:o.dir, primary:false, label:o.custom?"":o.l[LANG]}; }
+      else { delete state.prepost[o.c]; }
+      renderSubs();
+    };
+    pc.appendChild(chip);
+  });
+}
+function renderDemog(){
+  const dc=$("demoChips"); dc.innerHTML="";
+  DEMOG.forEach(d=>{
+    const chip=document.createElement("div"); chip.className="chip"+(state.demog.has(d.k)?" on":""); chip.textContent=d.l[LANG];
+    chip.onclick=()=>{ const on=chip.classList.toggle("on"); on?state.demog.add(d.k):state.demog.delete(d.k); };
+    dc.appendChild(chip);
+  });
+}
+function renderSubs(){
+  const ps=$("prepostSubs"); ps.innerHTML=""; const t=T[LANG];
+  PREPOST.filter(o=>state.prepost[o.c]).forEach(o=>{
+    const v=state.prepost[o.c];
+    const d=document.createElement("div"); d.className="sub"; d.id="sub-"+o.c;
+    d.innerHTML=`<div class="minirow"><strong>${o.l[LANG]}</strong>
+      ${o.custom?'<input type="text" placeholder="'+t.lblph+'" style="max-width:220px" id="lbl-'+o.c+'">':''}
+      <span>${t.expdir}</span>
+      <select id="dir-${o.c}"><option value="increase">${t.dir_up}</option><option value="decrease">${t.dir_dn}</option></select>
+      <label class="check" style="margin:0"><input type="checkbox" id="prim-${o.c}"> ${t.prim}</label></div>`;
+    ps.appendChild(d);
+    $("dir-"+o.c).value=v.direction; $("dir-"+o.c).onchange=e=>v.direction=e.target.value;
+    $("prim-"+o.c).checked=!!v.primary; $("prim-"+o.c).onchange=e=>v.primary=e.target.checked;
+    if(o.custom){ const li=$("lbl-"+o.c); li.value=v.label||""; li.oninput=e=>v.label=e.target.value; }
+  });
 }
 
-// demographics chips
-const dc=$("demoChips");
-DEMOG.forEach(d=>{
-  const chip=document.createElement("div");
-  chip.className="chip"+(state.demog.has(d.k)?" on":""); chip.textContent=d.he;
-  chip.onclick=()=>{ const on=chip.classList.toggle("on"); on?state.demog.add(d.k):state.demog.delete(d.k); };
-  dc.appendChild(chip);
-});
-
-function simName(){
-  const s=SIMS.find(x=>x.k===state.sim);
-  if(!s) return "";
-  if(s.k==="other"||s.k==="new") return $("simOther").value.trim() || s.t;
-  return s.t;
-}
+function simName(){ const s=SIMS.find(x=>x.k===state.sim); if(!s) return "";
+  if(s.k==="other"||s.k==="new") return $("simOther").value.trim()||s.t[LANG]; return s.t[LANG]; }
 function buildAnswers(){
   const outcomes=[];
   for(const [c,v] of Object.entries(state.prepost)){
@@ -321,37 +384,28 @@ function buildAnswers(){
   if($("po_perceived_change").checked) outcomes.push({construct:"perceived_change"});
   if($("po_felt_change").checked) outcomes.push({construct:"felt_change"});
   return {
-    intake_version:"1.1",
-    study:{ title_he:"", collaborator:$("collaborator").value.trim(),
-      pi:"Elad Refoua", coordinator:"Yuval Holzman",
+    intake_version:"1.2", ui_language:LANG,
+    study:{ title_he:"", collaborator:$("collaborator").value.trim(), pi:"Elad Refoua", coordinator:"Yuval Holzman",
       population_he:$("population").value.trim(), setting_he:$("setting").value.trim(),
       language:$("language").value, n_estimate:Number($("n").value)||null, when:$("when").value.trim(),
       research_value:$("researchValue").value.trim(),
-      funding:{ has: state.funding==="yes", source: state.funding==="yes" ? $("fundingSource").value.trim() : "" } },
+      funding:{ has: state.funding==="yes", source: state.funding==="yes"?$("fundingSource").value.trim():"" } },
     practice:{ has_simulation: state.sim!=null && state.sim!=="other" ? true : (state.sim==="other"),
-      sim_choice: state.sim, sim_name: simName(), sim_uuid:"",
-      n_sessions: $("nSessions").value, goal_he:$("goal").value.trim() },
+      sim_choice: state.sim, sim_name: simName(), sim_uuid:"", n_sessions: $("nSessions").value, goal_he:$("goal").value.trim() },
     outcomes,
-    existing_scales:{ have: state.haveScales==="yes", note:$("scalesNote")?$("scalesNote").value.trim():"" },
+    existing_scales:{ have: state.haveScales==="yes", note:$("scalesNote").value.trim() },
     design:{ timing: state.timing, control_group: state.control==="yes" },
-    demographics:[...state.demog],
-    qualitative:true,
-    notes_he:$("notes").value.trim()
+    demographics:[...state.demog], qualitative:true, notes_he:$("notes").value.trim()
   };
 }
-
-$("submit").onclick=()=>{
-  const a=buildAnswers(); window.__ANSWERS__=a;
-  $("json").textContent=JSON.stringify(a,null,2);
-  $("out").classList.remove("hidden"); $("out").scrollIntoView({behavior:"smooth"});
-};
-$("download").onclick=()=>{
-  const blob=new Blob([JSON.stringify(window.__ANSWERS__,null,2)],{type:"application/json"});
-  const u=URL.createObjectURL(blob); const a=document.createElement("a");
-  a.href=u; a.download="answers.json"; a.click(); URL.revokeObjectURL(u);
-};
+$("submit").onclick=()=>{ const a=buildAnswers(); window.__ANSWERS__=a;
+  $("json").textContent=JSON.stringify(a,null,2); $("out").classList.remove("hidden"); $("out").scrollIntoView({behavior:"smooth"}); };
+$("download").onclick=()=>{ const blob=new Blob([JSON.stringify(window.__ANSWERS__,null,2)],{type:"application/json"});
+  const u=URL.createObjectURL(blob); const a=document.createElement("a"); a.href=u; a.download="answers.json"; a.click(); URL.revokeObjectURL(u); };
 $("copy").onclick=()=>{ navigator.clipboard.writeText($("json").textContent);
-  $("copy").textContent="הועתק ✓"; setTimeout(()=>$("copy").textContent="העתקה",1500); };
+  $("copy").textContent="✓"; setTimeout(()=>$("copy").textContent=T[LANG].btn_copy,1500); };
+
+applyLang("he");
 </script>
 </body>
 </html>
