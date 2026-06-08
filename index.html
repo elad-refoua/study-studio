@@ -127,6 +127,7 @@
     <div class="grid" id="simGrid"></div>
     <div id="simOtherBox" class="sub hidden"><input type="text" id="simOther" data-ph="ph_simother"></div>
     <div class="row"><div><label class="q" data-i18n="l_nsess"></label>
+      <div class="qsub" data-i18n="sub_nsess"></div>
       <select id="nSessions">
         <option value="1" data-i18n="sess1"></option><option value="2" data-i18n="sess2"></option>
         <option value="3" data-i18n="sess3"></option><option value="multiple" data-i18n="sessM"></option></select></div></div>
@@ -235,14 +236,14 @@ const T = {
   trk_ther:"• אימון מטפלים ואנשי מקצוע — תרגול מיומנויות קליניות (למשל שיחה מובנית, זיהוי צרכים, או ויסות רגשי).",
   trk_care:"• אומנה — הכשרת אנשי מקצוע בעולם האומנה.",
   s1_t:"עליך ועל הקבוצה", s1_h:"פרטים בסיסיים על מי עורך/ת את המחקר, מי הנבדקים, ובאיזו מסגרת.",
-  l_collab:"שם מלא ותפקיד", ph_collab:"לדוגמה: ד״ר חילי כוכבי, מרצה",
-  l_setting:"מסגרת / מקום העברה", sub_setting:"איפה ובאיזו מסגרת יתבצע המחקר (קורס, מכללה, מרפאה).", ph_setting:"לדוגמה: המרכז האקדמי למשפט ולעסקים — קורס שנה א'",
+  l_collab:"שם מלא ותפקיד", ph_collab:"לדוגמה: ד״ר פלוני אלמוני, מרצה",
+  l_setting:"מסגרת / מקום העברה", sub_setting:"איפה ובאיזו מסגרת יתבצע המחקר (קורס, מכללה, מרפאה).", ph_setting:"לדוגמה: מכללה אקדמית — קורס שנה א'",
   l_studylang:"שפת השאלונים", opt_he:"עברית", opt_en:"אנגלית",
-  l_pop:"מי הנבדקים?", ph_pop:"לדוגמה: מתאמנות שנה א' בפסיכולוגיה חינוכית",
+  l_pop:"מי הנבדקים?", ph_pop:"לדוגמה: סטודנטים/יות לתואר שני בתחום הרלוונטי",
   l_n:"כמה סטודנטים / משתתפים בערך?", l_when:"מתי (תאריך העברה)?",
   s2_t:"הסימולציה", s2_h:"איזה סוג סימולציה, כמה פעמים, ומה הערך המחקרי.",
   l_whichsim:"איזו סימולציה?", sub_whichsim:"בחר/י תחום. את הסימולציה המדויקת נתאים יחד (או נבנה חדשה אם צריך).", ph_simother:"תאר/י את הסימולציה הרצויה או הקישור",
-  l_nsess:"כמה פעמים יעברו את הסימולציה?", sess1:"פעם אחת", sess2:"פעמיים", sess3:"שלוש", sessM:"כמה פעמים / לאורך זמן",
+  l_nsess:"כמה פעמים יעברו את הסימולציה?", sub_nsess:"מומלץ כמה העברות ברצף — רצף של מפגשים מגביר את האפקט ואת הלמידה.", sess1:"פעם אחת", sess2:"פעמיים", sess3:"שלוש", sessM:"כמה פעמים / לאורך זמן",
   l_goal:"מה המשתתפים אמורים להרוויח או לשנות?", ph_goal:"לדוגמה: להבין טוב יותר את החוויה, להרגיש מסוגלות גבוהה יותר, ולהפחית חשש.",
   l_resval:"מה הערך המחקרי / התרומה?", sub_resval:"למה המחקר הזה חשוב ומה חדש בו — זה יעזור לנו למסגר את השאלות והפרסום.", ph_resval:"לדוגמה: ראשונים לבחון אם משחק תפקיד בסימולציית AI מעלה מסוגלות ומפחית חשש אצל מתאמנים.",
   s3_t:"מה למדוד", s3_h:"בחר/י את התוצאות שחשובות לך. תחת כל מדד יש הסבר קצר מה הוא ואיך נמדד.",
@@ -257,7 +258,7 @@ const T = {
   l_control:"להוסיף קבוצת השוואה / ביקורת?", sub_control:"קבוצה שלא עוברת את הסימולציה, להשוואה. בפיילוט ראשון לרוב לא — מתחילים בזרוע אחת.",
   ctl_no:"לא (פיילוט, זרוע אחת)", ctl_yes:"כן",
   s7_t:"פרטי רקע לאיסוף", s7_h:"אילו פרטים דמוגרפיים לאסוף מהמשתתפים.",
-  s8_t:"מימון", s8_h:"האם יש מקור מימון למחקר? (חשוב לתכנון העלויות והדיווח).", fn_no:"אין / לא בטוח", fn_yes:"כן — יש", ph_fund:"מהו מקור המימון? (קרן, מענק, מוסד, סכום אם ידוע)",
+  s8_t:"מימון", s8_h:"שימו לב: השימוש בסימולציה כרוך בעלות. אם יש מימון ייעודי לכך — סביר שנוכל לעשות יותר (יותר משתתפים, יותר העברות, ואף מחקר מבוקר).", fn_no:"אין / לא בטוח", fn_yes:"כן — יש", ph_fund:"מהו מקור המימון? (קרן, מענק, מוסד, סכום אם ידוע)",
   s9_t:"הערות", s9_h:"כל דבר שחשוב שייכלל — או שעדיף להימנע ממנו.", ph_notes:"מקום חופשי להערות, בקשות, או דגשים.",
   cta:"בנו לי טיוטת מחקר ⟵", out_t:"✓ קיבלנו — זה מה שנבנה ממך", out_s:"התשובות עוברות אלינו, ומכאן אנחנו מרכיבים טיוטת מחקר מלאה + אג'נדה קצרה לפגישה.",
   btn_dl:"⬇ הורדת התשובות (answers.json)", btn_copy:"העתקה",
@@ -274,14 +275,14 @@ const T = {
   trk_ther:"• Clinician & professional training — practicing clinical skills (e.g. structured dialogue, identifying needs, or emotion regulation).",
   trk_care:"• Foster care — training professionals in the foster-care field.",
   s1_t:"You & the cohort", s1_h:"Basic details on who runs the study, who the participants are, and in what setting.",
-  l_collab:"Full name & role", ph_collab:"e.g. Dr. Hili Kochavi, lecturer",
-  l_setting:"Setting / location", sub_setting:"Where and in what framework the study runs (course, college, clinic).", ph_setting:"e.g. Academic Center for Law & Business — year-1 course",
+  l_collab:"Full name & role", ph_collab:"e.g. Dr. Jane Doe, lecturer",
+  l_setting:"Setting / location", sub_setting:"Where and in what framework the study runs (course, college, clinic).", ph_setting:"e.g. an academic college — a year-1 course",
   l_studylang:"Questionnaire language", opt_he:"Hebrew", opt_en:"English",
-  l_pop:"Who are the participants?", ph_pop:"e.g. first-year MA Educational Psychology trainees",
+  l_pop:"Who are the participants?", ph_pop:"e.g. master's students in the relevant field",
   l_n:"Roughly how many students / participants?", l_when:"When (date)?",
   s2_t:"The simulation", s2_h:"Which kind of simulation, how many times, and the research value.",
   l_whichsim:"Which simulation?", sub_whichsim:"Pick a domain. We'll match the exact simulation together (or build a new one if needed).", ph_simother:"Describe the simulation you want, or a link",
-  l_nsess:"How many times will they run the simulation?", sess1:"Once", sess2:"Twice", sess3:"Three times", sessM:"Several times / over time",
+  l_nsess:"How many times will they run the simulation?", sub_nsess:"Several consecutive runs are recommended — a sequence of sessions strengthens the effect and the learning.", sess1:"Once", sess2:"Twice", sess3:"Three times", sessM:"Several times / over time",
   l_goal:"What should participants gain or change?", ph_goal:"e.g. understand the experience better, feel more capable, and reduce apprehension.",
   l_resval:"What's the research value / contribution?", sub_resval:"Why this study matters and what's new — this helps us frame the questions and the publication.", ph_resval:"e.g. first to test whether role-play in an AI simulation raises self-efficacy and reduces apprehension among trainees.",
   s3_t:"What to measure", s3_h:"Pick the outcomes that matter to you. Under each measure there's a short note on what it is and how it's measured.",
@@ -296,7 +297,7 @@ const T = {
   l_control:"Add a comparison / control group?", sub_control:"A group that doesn't go through the simulation, for comparison. For a first pilot usually not — we start with a single arm.",
   ctl_no:"No (pilot, single arm)", ctl_yes:"Yes",
   s7_t:"Background details to collect", s7_h:"Which demographics to collect from participants.",
-  s8_t:"Funding", s8_h:"Is there a funding source for the study? (important for cost planning and reporting).", fn_no:"None / not sure", fn_yes:"Yes — there is", ph_fund:"What is the funding source? (fund, grant, institution, amount if known)",
+  s8_t:"Funding", s8_h:"Note: using the simulation has a cost. If there's dedicated funding for it, we can likely do more (more participants, more runs, even a controlled study).", fn_no:"None / not sure", fn_yes:"Yes — there is", ph_fund:"What is the funding source? (fund, grant, institution, amount if known)",
   s9_t:"Notes", s9_h:"Anything important to include — or to avoid.", ph_notes:"Free space for notes, requests, or emphases.",
   cta:"Build my study draft ⟶", out_t:"✓ Got it — here's what we'll build from you", out_s:"Your answers come to us, and from here we assemble a full study draft + a short meeting agenda.",
   btn_dl:"⬇ Download answers (answers.json)", btn_copy:"Copy",
