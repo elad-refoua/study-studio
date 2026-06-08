@@ -213,7 +213,7 @@
     <div class="card">
       <h2 data-i18n="out_t"></h2>
       <p class="note" data-i18n="out_s"></p>
-      <div class="callout" data-i18n="out_next"></div>
+      <div class="callout" id="outNext" data-i18n="out_next"></div>
       <div class="outbtns">
         <button class="primary" id="send" data-i18n="btn_send"></button>
         <button id="download" data-i18n="btn_dl"></button>
@@ -265,6 +265,7 @@ const T = {
   cta:"בנו לי טיוטת מחקר ⟵", out_t:"✓ כמעט סיימת!", out_s:"התשובות מוכנות. נשאר רק לשלוח אותן לצוות המחקר.",
   out_next:"מה עכשיו? לחצו על “שליחה לצוות המחקר” — ייפתח מייל מוכן לשליחה (אפשר גם להוריד או להעתיק ולשלוח בכל דרך, למשל בוואטסאפ). מהתשובות נבנה טיוטת מחקר מלאה + אג'נדה, ונחזור אליכם לפגישה קצרה.",
   btn_send:"✉ שליחה לצוות המחקר", btn_dl:"⬇ הורדה", btn_copy:"העתקה",
+  sending:"שולח…", sent:"✓ נשלח", sent_msg:"הבקשה נשלחה לצוות המחקר ✓ — כבר בנינו ממנה טיוטה ראשונית, ונחזור אליך לפגישה קצרה. תודה!",
   mail_subj:"שאלון תכנון מחקר — חבילת השת״פ של מנטי", mail_intro:"שלום, מצורפות תשובות שאלון תכנון המחקר:",
   dir_up:"עולה ▲", dir_dn:"יורד ▼", prim:"מדד ראשי (כותרת)", expdir:"כיוון צפוי:", lblph:"שם המדד" },
  en:{ dir:"ltr",
@@ -306,6 +307,7 @@ const T = {
   cta:"Build my study draft ⟶", out_t:"✓ Almost done!", out_s:"Your answers are ready. All that's left is to send them to the research team.",
   out_next:"What now? Click “Send to the research team” — a ready-to-send email opens (you can also download or copy and send it any way, e.g. WhatsApp). From your answers we'll build a full study draft + agenda and get back to you for a short meeting.",
   btn_send:"✉ Send to the research team", btn_dl:"⬇ Download", btn_copy:"Copy",
+  sending:"Sending…", sent:"✓ Sent", sent_msg:"Your request was sent to the research team ✓ — we've already built an initial draft and will get back to you for a short meeting. Thanks!",
   mail_subj:"Study intake — MENTI Collaboration Package", mail_intro:"Hello, attached are the study-intake answers:",
   dir_up:"Up ▲", dir_dn:"Down ▼", prim:"Primary (headline) outcome", expdir:"Expected direction:", lblph:"Measure name" }
 };
@@ -416,10 +418,19 @@ $("download").onclick=()=>{ const blob=new Blob([JSON.stringify(window.__ANSWERS
   const u=URL.createObjectURL(blob); const a=document.createElement("a"); a.href=u; a.download="answers.json"; a.click(); URL.revokeObjectURL(u); };
 $("copy").onclick=()=>{ navigator.clipboard.writeText($("json").textContent);
   $("copy").textContent="✓"; setTimeout(()=>$("copy").textContent=T[LANG].btn_copy,1500); };
-$("send").onclick=()=>{ const t=T[LANG]; const a=window.__ANSWERS__||{};
-  const subj=encodeURIComponent(t.mail_subj);
+const BACKEND="https://menti-studio-intake-428389416475.me-west1.run.app/intake";
+function mailtoFallback(t,a){ const subj=encodeURIComponent(t.mail_subj);
   const body=encodeURIComponent(t.mail_intro+"\n\n"+JSON.stringify(a,null,2));
-  window.location.href="mailto:eladrefoua@gmail.com?subject="+subj+"&body="+body; };
+  window.location.href="mailto:eladrefoua@gmail.com?subject="+subj+"&body="+body; }
+$("send").onclick=async ()=>{ const t=T[LANG]; const a=window.__ANSWERS__||{}; const btn=$("send");
+  btn.disabled=true; btn.textContent=t.sending;
+  try{
+    const r=await fetch(BACKEND,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(a)});
+    const j=await r.json().catch(()=>({}));
+    if(r.ok && j.ok){ btn.textContent=t.sent; $("outNext").textContent=t.sent_msg; $("outNext").style.borderInlineStartColor="#34d399"; }
+    else throw new Error("backend");
+  }catch(e){ btn.disabled=false; btn.textContent=t.btn_send; mailtoFallback(t,a); }
+};
 applyLang("he");
 </script>
 </body>
