@@ -213,8 +213,10 @@
     <div class="card">
       <h2 data-i18n="out_t"></h2>
       <p class="note" data-i18n="out_s"></p>
+      <div class="callout" data-i18n="out_next"></div>
       <div class="outbtns">
-        <button class="primary" id="download" data-i18n="btn_dl"></button>
+        <button class="primary" id="send" data-i18n="btn_send"></button>
+        <button id="download" data-i18n="btn_dl"></button>
         <button id="copy" data-i18n="btn_copy"></button>
       </div>
       <pre id="json"></pre>
@@ -260,8 +262,10 @@ const T = {
   s7_t:"פרטי רקע לאיסוף", s7_h:"אילו פרטים דמוגרפיים לאסוף מהמשתתפים.",
   s8_t:"מימון", s8_h:"שימו לב: השימוש בסימולציה כרוך בעלות. אם יש מימון ייעודי לכך — סביר שנוכל לעשות יותר (יותר משתתפים, יותר העברות, ואף מחקר מבוקר).", fn_no:"אין / לא בטוח", fn_yes:"כן — יש", ph_fund:"מהו מקור המימון? (קרן, מענק, מוסד, סכום אם ידוע)",
   s9_t:"הערות", s9_h:"כל דבר שחשוב שייכלל — או שעדיף להימנע ממנו.", ph_notes:"מקום חופשי להערות, בקשות, או דגשים.",
-  cta:"בנו לי טיוטת מחקר ⟵", out_t:"✓ קיבלנו — זה מה שנבנה ממך", out_s:"התשובות עוברות אלינו, ומכאן אנחנו מרכיבים טיוטת מחקר מלאה + אג'נדה קצרה לפגישה.",
-  btn_dl:"⬇ הורדת התשובות (answers.json)", btn_copy:"העתקה",
+  cta:"בנו לי טיוטת מחקר ⟵", out_t:"✓ כמעט סיימת!", out_s:"התשובות מוכנות. נשאר רק לשלוח אותן לצוות המחקר.",
+  out_next:"מה עכשיו? לחצו על “שליחה לצוות המחקר” — ייפתח מייל מוכן לשליחה (אפשר גם להוריד או להעתיק ולשלוח בכל דרך, למשל בוואטסאפ). מהתשובות נבנה טיוטת מחקר מלאה + אג'נדה, ונחזור אליכם לפגישה קצרה.",
+  btn_send:"✉ שליחה לצוות המחקר", btn_dl:"⬇ הורדה", btn_copy:"העתקה",
+  mail_subj:"שאלון תכנון מחקר — חבילת השת״פ של מנטי", mail_intro:"שלום, מצורפות תשובות שאלון תכנון המחקר:",
   dir_up:"עולה ▲", dir_dn:"יורד ▼", prim:"מדד ראשי (כותרת)", expdir:"כיוון צפוי:", lblph:"שם המדד" },
  en:{ dir:"ltr",
   hero_t:"MENTI Collaboration Package", hero_s:"A short form that prepares a complete pre-post study for you. Answer what you know — we'll settle the rest together in a short meeting.",
@@ -299,8 +303,10 @@ const T = {
   s7_t:"Background details to collect", s7_h:"Which demographics to collect from participants.",
   s8_t:"Funding", s8_h:"Note: using the simulation has a cost. If there's dedicated funding for it, we can likely do more (more participants, more runs, even a controlled study).", fn_no:"None / not sure", fn_yes:"Yes — there is", ph_fund:"What is the funding source? (fund, grant, institution, amount if known)",
   s9_t:"Notes", s9_h:"Anything important to include — or to avoid.", ph_notes:"Free space for notes, requests, or emphases.",
-  cta:"Build my study draft ⟶", out_t:"✓ Got it — here's what we'll build from you", out_s:"Your answers come to us, and from here we assemble a full study draft + a short meeting agenda.",
-  btn_dl:"⬇ Download answers (answers.json)", btn_copy:"Copy",
+  cta:"Build my study draft ⟶", out_t:"✓ Almost done!", out_s:"Your answers are ready. All that's left is to send them to the research team.",
+  out_next:"What now? Click “Send to the research team” — a ready-to-send email opens (you can also download or copy and send it any way, e.g. WhatsApp). From your answers we'll build a full study draft + agenda and get back to you for a short meeting.",
+  btn_send:"✉ Send to the research team", btn_dl:"⬇ Download", btn_copy:"Copy",
+  mail_subj:"Study intake — MENTI Collaboration Package", mail_intro:"Hello, attached are the study-intake answers:",
   dir_up:"Up ▲", dir_dn:"Down ▼", prim:"Primary (headline) outcome", expdir:"Expected direction:", lblph:"Measure name" }
 };
 
@@ -410,6 +416,10 @@ $("download").onclick=()=>{ const blob=new Blob([JSON.stringify(window.__ANSWERS
   const u=URL.createObjectURL(blob); const a=document.createElement("a"); a.href=u; a.download="answers.json"; a.click(); URL.revokeObjectURL(u); };
 $("copy").onclick=()=>{ navigator.clipboard.writeText($("json").textContent);
   $("copy").textContent="✓"; setTimeout(()=>$("copy").textContent=T[LANG].btn_copy,1500); };
+$("send").onclick=()=>{ const t=T[LANG]; const a=window.__ANSWERS__||{};
+  const subj=encodeURIComponent(t.mail_subj);
+  const body=encodeURIComponent(t.mail_intro+"\n\n"+JSON.stringify(a,null,2));
+  window.location.href="mailto:eladrefoua@gmail.com?subject="+subj+"&body="+body; };
 applyLang("he");
 </script>
 </body>
